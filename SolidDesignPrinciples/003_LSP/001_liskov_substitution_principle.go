@@ -1,0 +1,7 @@
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Print("LISKOV SUBSTITUTION PRINCIPLE NOT APPICABLE FOR GOLANG AS WE DON'T HAVE CLASS CONCEPT IN GOLANG")
+}
