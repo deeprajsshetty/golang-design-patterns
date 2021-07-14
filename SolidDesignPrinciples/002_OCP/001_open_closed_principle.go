@@ -116,6 +116,37 @@ func (f *BetterFilter) Filter(products []Product, spec Specification) []*Product
 	return result
 } 
 
+/*
+	Following OCP
+	Embedding is a powerful tool which allows Go's types to be open for extension.
+	Two Examples Given below.
+*/
+
+// Example 1
+
+// Requirement 1 - Display Name (Requirement Delivered to 100 Customers i.e. Running In Production)
+type Employee struct {
+	name string
+}
+
+func (e Employee) Display() {
+	fmt.Printf("Hello %s\n", e.name)
+}
+
+// Requirement 2 - Display Name with SurName (As Requirement 1 already in Production 
+// so don't disturb earlier implmentation)
+// This Step called as 
+// Open For Extension but closed for modification
+type EmployeeWithSurname struct {
+	Employee
+	surname string
+}
+
+func (e EmployeeWithSurname) Display() {
+	fmt.Printf("Hello %s %s\n", e.name, e.surname)
+}
+
+
 func main() {
 	item001 := Product{"Item 001", green, small}
 	item002 := Product{"Item 002", green, large}
@@ -150,4 +181,17 @@ func main() {
 	for _, v := range betterf.Filter(products, largeGreenSpec) {
 		fmt.Printf(" - %s is large and green\n", v.name)
 	}
+
+	// Example 1
+
+	// Requirement 1 - Display Name (Requirement Delivered to 100 Customers i.e. Running In Production)
+	displayName := Employee{"Name"}
+	displayName.Display()
+
+	// Requirement 2 - Display Name with SurName (As Requirement 1 already in Production 
+	// so don't disturb earlier implmentation)
+	// This Step called as 
+	// Open For Extension but closed for modification
+	displayNameWithSurname := EmployeeWithSurname{displayName, "Surname"}
+	displayNameWithSurname.Display()
 }

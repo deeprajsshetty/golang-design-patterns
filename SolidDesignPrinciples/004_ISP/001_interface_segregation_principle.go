@@ -150,7 +150,6 @@ func (d ISPDubaiPayroll) Deduction(data Data) bool {
 	return true
 }
 
-
 // Main
 func main() {
 	/*Not Followed ISP*/
