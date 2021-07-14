@@ -1,13 +1,8 @@
 package main
 
-import (
-	"fmt"	
-	"io"
-)
-
+import "fmt"
 
 type Data struct {
-	w io.Writer
 }
 
 /*
